@@ -41,3 +41,20 @@ class SalesRep {
         return `Client ${name} not found.`;
     }
 }
+
+
+// Task 3: Create VIPCustomer Class (extends Customer)
+
+class VIPCustomer extends Customer {
+    constructor(name, email, vipLevel) {
+        super(name, email);
+        this.vipLevel = vipLevel;  // VIP level could be 'Gold', 'Platinum'
+    }
+
+    // Override getTotalSpent to apply a 10% loyalty bonus
+    getTotalSpent() {
+        const totalSpent = super.getTotalSpent();
+        const loyaltyBonus = totalSpent * 0.1;  // 10% bonus
+        return totalSpent + loyaltyBonus;
+    }
+}
