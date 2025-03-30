@@ -58,3 +58,40 @@ class VIPCustomer extends Customer {
         return totalSpent + loyaltyBonus;
     }
 }
+
+
+// Task 4: Build a Client Report System
+
+const customer1 = new Customer("John Doe", "john@example.com");
+customer1.addPurchase(100);
+customer1.addPurchase(200);
+
+const customer2 = new VIPCustomer("Jane Smith", "jane@example.com", "Platinum");
+customer2.addPurchase(300);
+customer2.addPurchase(400);
+
+const customer3 = new Customer("Alice Weber", "alice@example.com");
+customer3.addPurchase(150);
+
+const salesRep = new SalesRep("Jake Brown");
+salesRep.addClient(customer1);
+salesRep.addClient(customer2);
+salesRep.addClient(customer3);
+
+// Total revenue from all customers
+const totalRevenue = salesRep.clients.reduce((total, client) => total + client.getTotalSpent(), 0);
+
+// High-spending customers (spent over $500)
+const highSpendingCustomers = salesRep.clients.filter(client => client.getTotalSpent() > 500);
+
+// Customer summary (name and total spent)
+const customerSummary = salesRep.clients.map(client => ({
+    name: client.name,
+    totalSpent: client.getTotalSpent()
+}));
+
+// Logs
+console.log("Total Revenue: $", totalRevenue);
+console.log("High-Spending Customers:", highSpendingCustomers.map(client => client.name));
+console.log("Customer Summary:");
+customerSummary.forEach(client => console.log(`${client.name}: $${client.totalSpent.toFixed(2)}`));
