@@ -17,3 +17,27 @@ class Customer {
         return this.purchaseHistory.reduce((total, amount) => total + amount, 0);
     }
 }
+
+
+// Task 2: Create a SalesRep Class
+
+class SalesRep {
+    constructor(name) {
+        this.name = name;
+        this.clients = [];
+    }
+
+    // Adds a customer to the client list
+    addClient(customer) {
+        this.clients.push(customer);
+    }
+
+    // Finds a client by name and returns total spent
+    getClientTotal(name) {
+        const client = this.clients.find(client => client.name === name);
+        if (client) {
+            return client.getTotalSpent();
+        }
+        return `Client ${name} not found.`;
+    }
+}
